@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { headers } from 'next/headers';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -14,9 +15,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = headers();
+  const ip =
+    headersList.get('x-forwarded-for') ||
+    headersList.get('x-real-ip') ||
+    headersList.get('remote-addr');
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {ip === '::1' ? '127.0.0.1' : ip}
+        {children}
+      </body>
     </html>
   );
 }
