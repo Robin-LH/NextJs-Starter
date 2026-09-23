@@ -6,6 +6,9 @@ const HomePage = dynamic(() => import('@/page-builder/home-page'), {
   loading: () => <> Loading...</>,
 });
 
-export default function Home() {
+/** Renders the dynamically loaded home page, including its loading fallback. */
+function Home() {
   return <HomePage />;
 }
+
+export default Home;
