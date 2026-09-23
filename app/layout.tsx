@@ -21,6 +21,8 @@ export default function RootLayout({
     headersList.get('x-real-ip') ||
     headersList.get('remote-addr');
 
+  console.log(ip);
+  
   return (
     <html lang="en">
       <body className={inter.className}>
